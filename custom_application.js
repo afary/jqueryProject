@@ -1,3 +1,38 @@
+jQuery.fn.extend({
+
+  taskStates:['task-empty', 'task-x', 'task-apostrophe', 'task-dash'],
+
+  resetTaskStateClassNames:function() { 
+    var elements = this;
+    jQuery.each(jQuery.fn.taskStates, function() {
+      elements.removeClass(this);
+    })    
+    return this;
+  },
+
+  resetTaskState:function() {
+    this.resetTaskStateClassNames();
+    
+    return this.each(function() {
+      jQuery(this).data('taskStateIndex', 0)
+        .addClass(jQuery.fn.taskStates[0]);
+    });
+  },
+
+  toggleTaskState:function() { 
+    this.resetTaskStateClassNames();
+  
+    return this.each(function() {
+      var element = jQuery(this);
+      var taskStateIndex = element.data('taskStateIndex') || 0;
+      taskStateIndex = (taskStateIndex + 1) % jQuery.fn.taskStates.length;
+      
+      element.data('taskStateIndex', taskStateIndex)
+        .addClass(jQuery.fn.taskStates[taskStateIndex]);
+    });
+  },
+
+});
 jQuery(function () {
 
     $('#add').click(function(e) { 
