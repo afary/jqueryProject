@@ -37,7 +37,11 @@ jQuery(function () {
 
     $('#add').click(function(e) { 
     var taskItem = $('#tasks ul li:first').clone();
-    taskItem.find('form')[0].reset();
+   taskItem
+        .find('.completion a').resetTaskState()
+      .end()
+        .find('input[type="text"]').val("");
+
     $('#tasks ul').append(taskItem);
     taskItem.find('input[type="text"]:first').focus();
     return false;
@@ -46,6 +50,7 @@ jQuery(function () {
   $('#add').click().click();
 
   $('#tasks ul').sortable({handle:".handle"}).disableSelection();
+  $('#task-footer').bg([0,0,10,10]);
   
   $('input[type="text"]:first').focus();
   
