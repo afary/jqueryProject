@@ -34,6 +34,20 @@ jQuery.fn.extend({
 
 });
 jQuery(function () {
+  $('#button-25').click(function(e) {
+    e.preventDefault();
+    CountdownTimer.start(25);
+  });
+  $('#button-5-break').click(function(e) {
+    e.preventDefault();
+    CountdownTimer.start(5, true);
+  });
+  $('#button-25-break').click(function(e) {
+    e.preventDefault();
+    CountdownTimer.start(25, true);
+  });
+
+jQuery(function () {
 
     $('#add').click(function(e) { 
     var taskItem = $('#tasks ul li:first').clone();
